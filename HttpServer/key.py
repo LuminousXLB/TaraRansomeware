@@ -28,7 +28,7 @@ class KeyDerivationFactory:
 
     def get_bitcoin_address(self, mBtcPub):
         btcPub = privkey_to_pubkey(self.btcPriv)
-        return privkey_to_address(add_pubkeys(mBtcPub, btcPub))
+        return pubkey_to_address(add_pubkeys(mBtcPub, btcPub))
 
     def get_cipher_private_key(self, mCipPriv):
         return encode_privkey(add_privkeys(mCipPriv, self.cipPriv), 'hex')

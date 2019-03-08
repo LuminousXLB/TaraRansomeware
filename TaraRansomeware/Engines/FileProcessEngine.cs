@@ -80,7 +80,7 @@ namespace TaraRansomeware.Engines
                 string extension = Path.GetExtension(filePath);
                 if (extension == validExtension)
                 {
-                    Debug.WriteLine(Path.GetFullPath(filePath));
+                    Console.WriteLine(Path.GetFullPath(filePath));
                     RestoreFile(cipPrivKey, Path.GetFullPath(filePath));
                 }
             }

