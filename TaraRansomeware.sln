@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.421
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaraRansomeware", "TaraRansomeware\TaraRansomeware.csproj", "{DF82D4DE-7723-49F5-9EAA-B583D6AE5A98}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaraRansomeware", "TaraRansomeware\TaraRansomeware.csproj", "{E9C27D10-B65E-4FCE-B563-3E2384963101}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{DF82D4DE-7723-49F5-9EAA-B583D6AE5A98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DF82D4DE-7723-49F5-9EAA-B583D6AE5A98}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DF82D4DE-7723-49F5-9EAA-B583D6AE5A98}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DF82D4DE-7723-49F5-9EAA-B583D6AE5A98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9C27D10-B65E-4FCE-B563-3E2384963101}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9C27D10-B65E-4FCE-B563-3E2384963101}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9C27D10-B65E-4FCE-B563-3E2384963101}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9C27D10-B65E-4FCE-B563-3E2384963101}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {06A325C8-820E-493D-ABF2-AB09369D70C9}
+		SolutionGuid = {05AF37E6-0B31-4EB9-8223-DE40CD80DEF4}
 	EndGlobalSection
 EndGlobal
