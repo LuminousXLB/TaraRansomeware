@@ -4,7 +4,7 @@ using Org.BouncyCastle.Crypto.Parameters;
 using System.Management;
 using System.Text;
 
-namespace TaraRansomeware
+namespace TaraRansomeware.Utilities
 {
     internal class GuidGenerator
     {

