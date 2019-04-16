@@ -67,6 +67,7 @@
     <Compile Include="Utilities\GuidGenerator.cs" />
     <Compile Include="Utilities\HttpUtils.cs" />
     <Compile Include="Utilities\KeyUtils.cs" />
+    <Compile Include="Utilities\RootGenerator.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
