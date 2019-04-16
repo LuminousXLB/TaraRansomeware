@@ -1,6 +1,5 @@
 ﻿using Org.BouncyCastle.Crypto.Digests;
 using Org.BouncyCastle.Utilities.Encoders;
-using System.Diagnostics;
 using System.Threading.Tasks;
 using TaraRansomeware.Engines;
 using TaraRansomeware.Utilities;
